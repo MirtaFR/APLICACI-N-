@@ -246,6 +246,8 @@
 
 </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 <body>
 	<div class="frame">
 		<div class="div">
@@ -253,8 +255,7 @@
 				<h1>Registro de Usuario</h1>
 			</div>
 			<div id="login_form" class="overlap" style="display: block;">
-				<form id="user_login_form" name="loginForm" method="post"
-					action="RegisterUser">
+				<form id="user_login_form" name="loginForm" method="post" action="RegisterUser" onsubmit="return validarFormulario();">					
 					<!-- LOGIN FORM -->
 					<div class="overlap-2 box">
 						<div class="text-wrapper-3" style="color: black;">Usuario</div>
@@ -281,13 +282,38 @@
 
 					<!-- SUBMIT BUTTON -->
 					<div></div>
-					<button id="submit_btn" type="submit" class="btn btn-primary">Registro</button>
+					<button id="submit_btn" type="submit" class="btn btn-primary" onclick="validarFormulario()">Registro</button>
+
 				</form>
 				<div>
-					<img class="img" src="/src/main/resources/images.jpeg" />
+					<img class="img" src="https://m.media-amazon.com/images/I/41WRn9TUaWL._SY445_SX342_QL70_ML2_.jpg"/>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+    function validarFormulario() {       
+        var usuario = document.getElementById("login_id").value;
+        var contrasena = document.getElementById("login_pwd").value;
+
+        if (usuario.trim() === "" || contrasena.trim() === "") {            
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ingresa usuario y contraseña',
+            });         
+            return false;
+        }        
+        if (/^\d+$/.test(usuario)) {            
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'El nombre de usuario no puede contener solo números',
+            });         
+            return false;
+        }        
+        return true;
+    }
+</script>	
 </body>
 </html>

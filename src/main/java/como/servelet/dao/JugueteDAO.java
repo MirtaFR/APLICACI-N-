@@ -49,7 +49,7 @@ import como.servelet.model.Juguete;
 public class JugueteDAO {
 	
 	
-	String base="pruebas";
+	String base="jugueteria";
 	String coleccion="juguetes";
 	String uri = "mongodb://localhost:27017";
     Bson projectionFields = Projections.fields(

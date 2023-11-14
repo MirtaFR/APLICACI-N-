@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -198,10 +201,9 @@
 }
 
 .rounded-input {
-	border-radius: 50px; /* Hace el campo de entrada redondo */
-	padding: 10px; /* Ajusta el relleno según tu preferencia */
-	width: 500px;
-	/* Otros estilos que desees aplicar */
+	border-radius: 50px; 
+	padding: 10px; 
+	width: 500px;	
 }
 
 #submit_btn {
@@ -229,8 +231,6 @@
 	background: linear-gradient(180deg, rgb(148.73, 114.3, 151.73) 0%,
 		rgba(100.46, 81.83, 109.23, 0) 100%);
 }
-
-/* Aplica los estilos al input con el ID 'login_id' */
 #login_id {
 	width: 572px;
 	height: 62px;
@@ -251,8 +251,7 @@
 }
 
 #submit_btn {
-	margin-top: 150px;
-	/* Ajusta la cantidad de margen superior según tus necesidades */
+	margin-top: 150px;	
 }
 
 .text-wrapper-3, .text-wrapper-2 {
@@ -260,11 +259,9 @@
 }
 
 #login_id, #login_pwd {
-	color: red; /* Cambia el color del texto a negro */
-	border: 2px solid #000;
-	/* Agrega un borde negro para separar el campo */
-	font-size: 40px;
-	/* Ajusta el tamaño de fuente según tus preferencias */
+	color: red; 
+	border: 2px solid #000;	
+	font-size: 40px;	
 }
 
 .input-group input {
@@ -272,12 +269,13 @@
 }
 </style>
 </head>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <body>
 	<div class="frame">
 		<div class="div">
 			<div class="overlap-group">
-				<img class="rectangle" src="img/rectangle-9.png" /> <img
-					class="juguete-removebg" src="img/juguete-2-removebg-preview-2.png" />
+				<img class="rectangle" src="https://previews.123rf.com/images/nikifiva/nikifiva1201/nikifiva120100059/11930316-juguetes-palabra-compuesta-a-partir-de-cubos-de-letras-ilustraci%C3%B3n-de-fondo-aislado-onwhite.jpg" /> <img
+					class="juguete-removebg" src="https://m.media-amazon.com/images/I/51eANTk1ZML.__AC_SY300_SX300_QL70_FMwebp_.jpg" />
 			</div>
 			<div class="no-tienes-una-cuenta">
 				¿No tienes una cuenta?
@@ -317,15 +315,44 @@
 
 					<!----- SUBMIT BUTTON ----->
 					<div></div>
-					<button id="submit_btn" type="submit" class="btn btn-primary">Ingresar</button>
+					<button id="submit_btn" type="submit" class="btn btn-primary" onclick="return validarFormulario()">Ingresar</button>
 				</form>
 				<div>
-					<img class="img" src="img/image-28.png" />
+					<img class="img" src="https://m.media-amazon.com/images/I/41WRn9TUaWL._SY445_SX342_QL70_ML2_.jpg" />
 				</div>
 			</div>
-
 		</div>
 	</div>
-</body>
+    <script>
+        function validarFormulario() {            
+            var usuario = document.getElementById("login_id").value;
+            var contrasena = document.getElementById("login_pwd").value;
 
+            if (usuario.trim() === "" || contrasena.trim() === "") {                
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Ingresa usuario y contraseña',
+                });             
+                return false;
+            }           
+            return true;
+        }
+    </script>
+
+    <%    
+    String errorMessage = (String) request.getAttribute("error_message");
+    if (errorMessage != null) {
+    %>
+        <script>           
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '<%= errorMessage %>',
+            });
+        </script>
+    <%
+    }
+    %>
+</body>
 </html>

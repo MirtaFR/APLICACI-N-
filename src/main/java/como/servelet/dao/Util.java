@@ -29,7 +29,7 @@ public class Util {
     // Method to search a user in the mongodb
     public static boolean searchUserInDb(String loginId, String loginPwd) {
         boolean user_found = false;
-        String db_name = "pruebas",
+        String db_name = "jugueteria",
                 db_collection_name = "usuarios";
  
         // Get the mongodb connection
@@ -57,7 +57,7 @@ public class Util {
     }
     public static boolean insertUserInDb(String loginId, String loginPwd) {
         boolean user_found = false;
-        String db_name = "pruebas",
+        String db_name = "jugueteria",
                 db_collection_name = "usuarios";
  
         // Get the mongodb connection
